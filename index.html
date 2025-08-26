@@ -1298,61 +1298,162 @@
       }
 
       /* Footer */
-      footer {
-        background: var(--darker);
-        color: white;
-        padding: 40px 0;
-        text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      /* Footer Base */
+      .footer {
+        background: linear-gradient(135deg, #0a0f1c, #1a1f2b);
+        color: #fff;
+        padding: 60px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Neon Glow Background Effect */
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 242, 255, 0.15) 0%,
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .footer .container {
+        position: relative;
+        z-index: 1;
       }
 
       .footer-content {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        align-items: flex-start;
       }
 
+      /* Logo */
       .footer-logo {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 20px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #00f2ff;
       }
 
       .footer-logo span {
-        background: linear-gradient(
-          135deg,
-          var(--primary) 0%,
-          var(--secondary) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #ff00d4;
       }
 
-      .footer-nav {
-        margin-bottom: 30px;
-      }
-
+      /* Nav */
       .footer-nav-list {
-        display: flex;
         list-style: none;
-        gap: 30px;
+        display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        gap: 20px;
+        padding: 0;
       }
 
       .footer-nav-link {
-        font-weight: 500;
-        transition: var(--transition);
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .footer-nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        transition: width 0.3s ease;
+      }
+
+      .footer-nav-link:hover::after {
+        width: 100%;
       }
 
       .footer-nav-link:hover {
-        color: var(--primary);
+        color: #00f2ff;
       }
 
-      .copyright {
-        opacity: 0.7;
+      /* Contact Form */
+      .footer-form {
+        flex: 1;
+        min-width: 280px;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+      }
+
+      .footer-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-form input,
+      .footer-form textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-form input:focus,
+      .footer-form textarea:focus {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 8px #00f2ff, 0 0 15px #ff00d4;
+      }
+
+      .footer-form textarea {
+        resize: none;
+        height: 100px;
+      }
+
+      .footer-form button {
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+      }
+
+      .footer-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 12px #00f2ff, 0 0 20px #ff00d4;
+      }
+
+      /* Copyright */
+      .footer p {
+        text-align: center;
+        margin-top: 40px;
         font-size: 0.9rem;
+        color: #bbb;
       }
 
       /* Animations */
@@ -1685,9 +1786,9 @@
               </div>
             </div>
 
-            <div class="tech-badge">React Native</div>
-            <div class="tech-badge">Node.js</div>
-            <div class="tech-badge">AI Integration</div>
+            <div class="tech-badge">Solutions Architect</div>
+            <div class="tech-badge">Software Engineer</div>
+            <div class="tech-badge">Brand & Software Strategist</div>
           </div>
         </div>
       </div>
@@ -2351,14 +2452,14 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- <section id="contact" class="contact">
       <div class="container">
         <div class="section-title">
           <h2>Contact Me</h2>
         </div>
 
         <div class="contact-container">
-          <!-- Contact Info -->
+          
           <div class="contact-info">
             <h3>Let's Connect</h3>
             <ul class="contact-details">
@@ -2398,7 +2499,7 @@
             </div>
           </div>
 
-          <!-- Contact Form -->
+         
           <div class="contact-form">
             <form>
               <input type="text" placeholder="Your Name" required />
@@ -2409,32 +2510,69 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
       <div class="container">
         <div class="footer-content">
-          <div class="footer-logo">Sabelo<span>Ndlovu</span></div>
-          <nav class="footer-nav">
-            <ul class="footer-nav-list">
-              <li><a href="#about" class="footer-nav-link">About</a></li>
-              <li>
-                <a href="#tech-stack" class="footer-nav-link">Tech Stack</a>
-              </li>
-              <li>
-                <a href="#experience" class="footer-nav-link">Experience</a>
-              </li>
-              <li>
-                <a href="#education" class="footer-nav-link">Education</a>
-              </li>
-              <li><a href="#contact" class="footer-nav-link">Contact</a></li>
-            </ul>
-          </nav>
-          <p class="copyright">
-            &copy; 2023 Sabelo Ndlovu. All Rights Reserved.
-          </p>
+          <!-- Logo -->
+          <div class="footer-logo">
+            <!-- Sabelo<span>Ndlovu</span> -->
+            <div class="contact-info">
+              <h3>Let's Connect</h3>
+              <ul class="contact-details">
+                <li>
+                  <i class="fas fa-envelope"></i>
+                  <span>ndlovusabelo353@gmail.com</span>
+                </li>
+                <li>
+                  <i class="fas fa-phone"></i>
+                  <span>+27 73 331 3840</span>
+                </li>
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Johannesburg, South Africa</span>
+                </li>
+              </ul>
+
+              <div class="social-links">
+                <a
+                  href="https://github.com/Sabelo-22"
+                  class="social-link"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sabelo-ndlovu-222806208"
+                  class="social-link"
+                  target="_blank"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="footer-form">
+            <form>
+              <input type="text" placeholder="Your Name" required />
+              <input type="email" placeholder="Your Email" required />
+              <textarea placeholder="Message" required></textarea>
+              <button type="submit">Send 🚀</button>
+            </form>
+          </div>
         </div>
+
+        <p class="copyright">&copy; 2025 Sabelo Ndlovu. All Rights Reserved.</p>
       </div>
     </footer>
 
