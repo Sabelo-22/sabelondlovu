@@ -1166,92 +1166,135 @@
       }
 
       /* Contact Section */
+      /* Contact Section */
       .contact {
-        position: relative;
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #0a0f1c, #1a1f2b);
+        color: #fff;
+        text-align: center;
       }
 
+      .contact .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Container Layout */
       .contact-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      /* Contact Info */
+      .contact-info {
+        flex: 1;
+        min-width: 280px;
+        max-width: 350px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        text-align: left;
       }
 
       .contact-info h3 {
-        font-size: 2rem;
-        margin-bottom: 30px;
-        background: linear-gradient(
-          135deg,
-          var(--light) 0%,
-          var(--primary) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .contact-details {
-        list-style: none;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: #00f2ff;
       }
 
       .contact-details li {
-        margin-bottom: 25px;
-        display: flex;
-        align-items: center;
-        font-size: 1.1rem;
+        margin: 15px 0;
+        list-style: none;
+        font-size: 1rem;
       }
 
       .contact-details i {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(
-          135deg,
-          var(--primary) 0%,
-          var(--secondary) 100%
-        );
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 20px;
-        font-size: 1.2rem;
-        transition: var(--transition);
+        margin-right: 10px;
+        color: #00f2ff;
       }
 
-      .contact-details li:hover i {
-        transform: scale(1.1);
-        box-shadow: 0 5px 15px rgba(10, 132, 255, 0.4);
-      }
-
+      /* Social Links */
       .social-links {
-        display: flex;
-        gap: 15px;
-        margin-top: 40px;
-        flex-wrap: wrap;
+        margin-top: 20px;
       }
 
       .social-link {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-        font-size: 1.2rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-right: 15px;
+        font-size: 1.3rem;
+        color: #fff;
+        transition: all 0.3s ease;
       }
 
       .social-link:hover {
-        background: linear-gradient(
-          135deg,
-          var(--primary) 0%,
-          var(--secondary) 100%
-        );
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(10, 132, 255, 0.4);
+        color: #00f2ff;
+        text-shadow: 0 0 8px #00f2ff, 0 0 15px #00f2ff;
+      }
+
+      /* Contact Form */
+      .contact-form {
+        flex: 1;
+        min-width: 280px;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255, 0, 212, 0.2);
+        backdrop-filter: blur(8px);
+      }
+
+      .contact-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 8px #00f2ff, 0 0 15px #ff00d4;
+      }
+
+      .contact-form textarea {
+        resize: none;
+        height: 120px;
+      }
+
+      .contact-form button {
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 12px #00f2ff, 0 0 20px #ff00d4;
       }
 
       /* Footer */
@@ -2276,7 +2319,7 @@
         <div class="education-grid">
           <div class="education-card animate-item">
             <div class="edu-header">
-              <div class="edu-date">2021 – 2025</div>
+              <div class="edu-date"></div>
               <h3 class="edu-institution">University of Johannesburg</h3>
             </div>
             <div class="edu-body">
@@ -2292,7 +2335,7 @@
 
           <div class="education-card animate-item">
             <div class="edu-header">
-              <div class="edu-date">2018 – 2020</div>
+              <div class="edu-date"></div>
               <h3 class="edu-institution">Tshwane University of Technology</h3>
             </div>
             <div class="edu-body">
@@ -2313,7 +2356,9 @@
         <div class="section-title">
           <h2>Contact Me</h2>
         </div>
+
         <div class="contact-container">
+          <!-- Contact Info -->
           <div class="contact-info">
             <h3>Let's Connect</h3>
             <ul class="contact-details">
@@ -2346,13 +2391,21 @@
               >
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a href="#" class="social-link">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-link">
-                <i class="fab fa-instagram"></i>
-              </a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
             </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form">
+            <form>
+              <input type="text" placeholder="Your Name" required />
+              <input type="email" placeholder="Your Email" required />
+              <textarea placeholder="Your Message" required></textarea>
+              <button type="submit">Send Message 🚀</button>
+            </form>
           </div>
         </div>
       </div>
