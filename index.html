@@ -219,6 +219,36 @@
       .hero-content {
         position: relative;
         z-index: 1;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .hero-text {
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeInRight 1s ease;
+      }
+
+      .profile-img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--primary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+      }
+
+      .profile-img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       }
 
       .hero-title {
@@ -257,6 +287,17 @@
         to {
           opacity: 1;
           transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
         }
       }
 
@@ -563,6 +604,20 @@
 
       /* Responsive Styles */
       @media (max-width: 992px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-text {
+          order: 2;
+        }
+
+        .hero-image {
+          order: 1;
+          margin-bottom: 40px;
+        }
+
         .about-content,
         .contact-container {
           grid-template-columns: 1fr;
@@ -638,8 +693,29 @@
           font-size: 1.2rem;
         }
 
+        .profile-img {
+          width: 250px;
+          height: 250px;
+        }
+
         .interest-list {
           flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .profile-img {
+          width: 200px;
+          height: 200px;
+        }
+
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
         }
       }
     </style>
@@ -672,15 +748,25 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container hero-content">
-        <h1 class="hero-title">Sabelo Ndlovu</h1>
-        <h2 class="hero-subtitle">Software Engineer</h2>
-        <p class="hero-description">
-          I am a Multi-talented innovator passionate about creating art through
-          computers. I craft stunning UI/UX designs and build robust back-end
-          solutions, driven by a desire to change the world through IT.
-        </p>
-        <div class="hero-btns">
-          <a href="#contact" class="btn">Get in Touch</a>
+        <div class="hero-text">
+          <h1 class="hero-title">Sabelo Ndlovu</h1>
+          <h2 class="hero-subtitle">Software Engineer</h2>
+          <p class="hero-description">
+            I am a Multi-talented innovator passionate about creating art
+            through computers. I craft stunning UI/UX designs and build robust
+            back-end solutions, driven by a desire to change the world through
+            IT.
+          </p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn">Get in Touch</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="./assets/1751023204625.jpeg"
+            alt="Sabelo Ndlovu"
+            class="profile-img"
+          />
         </div>
       </div>
     </section>
