@@ -42,6 +42,104 @@
         background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
         overflow-x: hidden;
         background-attachment: fixed;
+        position: relative;
+      }
+
+      /* Futuristic Background Elements */
+      .global-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        overflow: hidden;
+      }
+
+      .global-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .global-particle {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--primary-glow);
+        opacity: 0.2;
+        animation: float 20s infinite linear;
+      }
+
+      .global-grid-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          );
+        background-size: 50px 50px;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transform: rotateX(75deg) translateZ(-200px);
+        animation: gridMove 25s infinite linear;
+      }
+
+      .holographic-accent {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          var(--secondary) 0%,
+          transparent 70%
+        );
+        filter: blur(80px);
+        opacity: 0.1;
+        z-index: -1;
+        animation: moveAccent 30s infinite alternate;
+      }
+
+      .holographic-accent:nth-child(1) {
+        top: 10%;
+        left: 10%;
+      }
+
+      .holographic-accent:nth-child(2) {
+        bottom: 15%;
+        right: 15%;
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        animation-delay: 5s;
+        animation-duration: 25s;
+      }
+
+      @keyframes moveAccent {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(50px, 50px);
+        }
+        50% {
+          transform: translate(100px, -30px);
+        }
+        75% {
+          transform: translate(-70px, 70px);
+        }
+        100% {
+          transform: translate(-100px, -50px);
+        }
       }
 
       a {
@@ -99,18 +197,24 @@
       /* Navigation */
       header {
         position: fixed;
-        top: 0;
+        top: -100px;
         left: 0;
         width: 100%;
         z-index: 1000;
-        background: rgba(28, 28, 30, 0.8);
+        background: rgba(28, 28, 30, 0.95);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        transition: var(--transition);
+        transition: all 0.5s ease;
+      }
+
+      header.visible {
+        top: 0;
       }
 
       header.scrolled {
         padding: 10px 0;
+        background: rgba(18, 18, 19, 0.98);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
       }
 
       .nav-container {
@@ -175,6 +279,7 @@
         cursor: pointer;
         background: transparent;
         border: none;
+        z-index: 1001;
       }
 
       .bar {
@@ -853,6 +958,8 @@
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
+        position: relative;
+        z-index: 2;
       }
 
       .tech-heading {
@@ -881,6 +988,8 @@
         margin-bottom: 50px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding-bottom: 10px;
+        position: relative;
+        z-index: 2;
       }
 
       .tech-tab {
@@ -927,6 +1036,8 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 25px;
+        position: relative;
+        z-index: 2;
       }
 
       .tech-item {
@@ -1075,6 +1186,29 @@
         color: var(--accent);
       }
 
+      .timeline-meta {
+        color: var(--primary);
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        opacity: 0.8;
+      }
+
+      .timeline-skills {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-tag {
+        background: rgba(10, 132, 255, 0.2);
+        color: var(--primary);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
       /* Education Section */
       .education-grid {
         display: grid;
@@ -1166,8 +1300,8 @@
       }
 
       /* Contact Section */
-      /* Contact Section */
       .contact {
+        position: relative;
         padding: 80px 20px;
         background: linear-gradient(135deg, #0a0f1c, #1a1f2b);
         color: #fff;
@@ -1179,7 +1313,7 @@
         margin-bottom: 40px;
         text-transform: uppercase;
         letter-spacing: 3px;
-        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        background: linear-gradient(90deg, #00f2ff, #eee);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -1211,32 +1345,48 @@
         color: #00f2ff;
       }
 
+      .contact-details {
+        list-style: none;
+      }
+
       .contact-details li {
         margin: 15px 0;
-        list-style: none;
         font-size: 1rem;
+        display: flex;
+        align-items: center;
       }
 
       .contact-details i {
         margin-right: 10px;
         color: #00f2ff;
+        width: 20px;
       }
 
       /* Social Links */
       .social-links {
         margin-top: 20px;
+        display: flex;
+        gap: 15px;
       }
 
       .social-link {
-        margin-right: 15px;
         font-size: 1.3rem;
         color: #fff;
         transition: all 0.3s ease;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
       }
 
       .social-link:hover {
         color: #00f2ff;
-        text-shadow: 0 0 8px #00f2ff, 0 0 15px #00f2ff;
+        background: rgba(0, 242, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 0 8px #00f2ff, 0 0 15px #00f2ff;
       }
 
       /* Contact Form */
@@ -1285,7 +1435,7 @@
         padding: 12px;
         border: none;
         border-radius: 8px;
-        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        background: linear-gradient(90deg, #00f2ff, #0a84ff66);
         color: #fff;
         font-size: 1.1rem;
         cursor: pointer;
@@ -1294,11 +1444,10 @@
 
       .contact-form button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 12px #00f2ff, 0 0 20px #ff00d4;
+        box-shadow: 0 0 12px #00f2ff, 0 0 20px #0a84ff66;
       }
 
       /* Footer */
-      /* Footer Base */
       .footer {
         background: linear-gradient(135deg, #0a0f1c, #1a1f2b);
         color: #fff;
@@ -1351,7 +1500,7 @@
       }
 
       .footer-logo span {
-        color: #ff00d4;
+        color: #0a84ff66;
       }
 
       /* Nav */
@@ -1378,7 +1527,7 @@
         bottom: -4px;
         width: 0%;
         height: 2px;
-        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        background: linear-gradient(90deg, #00f2ff, #0a84ff66);
         transition: width 0.3s ease;
       }
 
@@ -1430,13 +1579,14 @@
       .footer-form textarea {
         resize: none;
         height: 100px;
+        font-family: inherit;
       }
 
       .footer-form button {
         padding: 10px;
         border: none;
         border-radius: 8px;
-        background: linear-gradient(90deg, #00f2ff, #ff00d4);
+        background: linear-gradient(90deg, #00f2ff, #0a84ff66);
         color: #fff;
         font-size: 1rem;
         cursor: pointer;
@@ -1517,12 +1667,12 @@
         }
 
         .contact-container {
-          grid-template-columns: 1fr;
+          flex-direction: column;
+          align-items: center;
         }
 
         .hamburger {
           display: block;
-          z-index: 1001;
         }
 
         .hamburger.active .bar:nth-child(2) {
@@ -1585,6 +1735,16 @@
         .about-actions {
           justify-content: center;
         }
+
+        .footer-content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .footer-nav-list {
+          justify-content: center;
+        }
       }
 
       @media (max-width: 768px) {
@@ -1644,6 +1804,10 @@
           width: 200px;
           text-align: center;
         }
+
+        .section-title h2 {
+          font-size: 2.5rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -1690,12 +1854,6 @@
           font-size: 1rem;
         }
 
-        .contact-details i {
-          width: 40px;
-          height: 40px;
-          margin-right: 15px;
-        }
-
         .about-heading {
           font-size: 2rem;
         }
@@ -1703,10 +1861,29 @@
         .tech-heading {
           font-size: 2rem;
         }
+
+        .contact-form,
+        .contact-info {
+          padding: 20px;
+        }
+
+        .social-link {
+          width: 40px;
+          height: 40px;
+          font-size: 1.1rem;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- Global Background Elements -->
+    <div class="global-bg">
+      <div class="global-particles" id="global-particles"></div>
+      <div class="global-grid-lines"></div>
+      <div class="holographic-accent"></div>
+      <div class="holographic-accent"></div>
+    </div>
+
     <!-- Header & Navigation -->
     <header>
       <div class="container nav-container">
@@ -1734,6 +1911,7 @@
       </div>
     </header>
 
+    <!-- Rest of your HTML content remains the same -->
     <!-- Futuristic Hero Section -->
     <section class="hero">
       <div class="hero-bg">
@@ -1800,102 +1978,77 @@
     </section>
 
     <!-- About Section -->
+    <!-- <section id="about" class="about">
+      <div class="container">
+        <div class="about-intro">
+          <h2 class="about-heading">ABOUT ME</h2>
+          <p class="about-subheading">
+            Need a Creative Product? I can Help You!
+          </p>
+        </div>
 
-    <!-- <section class="about" id="about">
-      <figure class="about-banner">
-        <img
-          src="./assets/images/sabelo-win.jpeg"
-          alt="A man in a alice blue shirt with a thinking expression"
-          class="w-100"
-        />
-      </figure>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              I am a Multi-talented innovator passionate about creating art
+              through computers. I craft stunning UI/UX designs and build robust
+              back-end solutions, driven by a desire to change the world through
+              IT.
+            </p>
+            <p>
+              I enjoy the process of turning ideas into reality using creative
+              innovative solutions. I'm always curious about learning new
+              skills, tools, and concepts. In addition to working on various
+              solo full stack projects, I have worked with creative teams, which
+              involves daily stand-ups and communications, source control, and
+              project management.
+            </p>
 
-      <div class="about-content section-content">
-        <p class="section-subtitle">About me</p>
+            <div class="about-actions">
+              <a href="#contact" class="btn btn-primary">HIRE ME</a>
+              <a href="#" class="btn btn-secondary">DOWNLOAD PORTFOLIO</a>
+            </div>
 
-        <h2 class="h3 section-title">
-          Need a Creative Product? I can Help You!
-        </h2>
+            <div class="interests">
+              <h4>Interests</h4>
+              <div class="interest-list">
+                <div class="interest-item">Programming</div>
+                <div class="interest-item">Chess</div>
+                <div class="interest-item">UI/UX Design</div>
+                <div class="interest-item">Emerging Tech</div>
+              </div>
+            </div>
+          </div>
 
-        <p class="section-text">
-          I am a Multi-talented innovator passionate about creating art through
-          computers. I craft stunning UI/UX designs and build robust back-end
-          solutions, driven by a desire to change the world through IT..I enjoy
-          the process of turning ideas into reality using creative innovative
-          solutions. I’m always curious about learning new skills, tools, and
-          concepts. In addition to working on various solo full stack projects,
-          I have worked with creative teams, which involves daily stand-ups and
-          communications, source control, and project management.
-        </p>
+          <div class="skills">
+            <div class="skills-container">
+              <div class="skill-category animate-item">
+                <h4><i class="fas fa-code"></i> Technical Skills</h4>
+                <ul class="skill-list">
+                  <li class="skill-item">React & React Native</li>
+                  <li class="skill-item">Node.js & Python</li>
+                  <li class="skill-item">SQL & NoSQL Databases</li>
+                  <li class="skill-item">DevOps & Cloud</li>
+                </ul>
+              </div>
 
-        <div class="btn-group">
-          <button class="btn btn-secondary" onclick="scrollToContact()">
-            Hire me
-          </button>
-
-          <button class="btn btn-primary" onclick="{coming()}">
-            Download Portfolio
-          </button>
+              <div class="skill-category animate-item">
+                <h4><i class="fas fa-brain"></i> Personal Skills</h4>
+                <ul class="skill-list">
+                  <li class="skill-item">Web Design</li>
+                  <li class="skill-item">Design Thinking</li>
+                  <li class="skill-item">Front End Coding</li>
+                  <li class="skill-item">Wireframe Creation</li>
+                  <li class="skill-item">Problem-Solving</li>
+                  <li class="skill-item">Back-end Coding</li>
+                  <li class="skill-item">Project Management</li>
+                  <li class="skill-item">Prompt Engineering</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section> -->
-    <!-- <section id="about" class="about">
-        <div class="container">
-            <div class="about-intro">
-                <h2 class="about-heading">ABOUT ME</h2>
-                <p class="about-subheading">Need a Creative Product? I can Help You!</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am a Multi-talented innovator passionate about creating art through computers. I craft stunning UI/UX designs and build robust back-end solutions, driven by a desire to change the world through IT.</p>
-                    <p>I enjoy the process of turning ideas into reality using creative innovative solutions. I'm always curious about learning new skills, tools, and concepts. In addition to working on various solo full stack projects, I have worked with creative teams, which involves daily stand-ups and communications, source control, and project management.</p>
-                    
-                    <div class="about-actions">
-                        <a href="#contact" class="btn btn-primary">HIRE ME</a>
-                        <a href="#" class="btn btn-secondary">DOWNLOAD PORTFOLIO</a>
-                    </div>
-                    
-                    <div class="interests">
-                        <h4>Interests</h4>
-                        <div class="interest-list">
-                            <div class="interest-item">Programming</div>
-                            <div class="interest-item">Chess</div>
-                            <div class="interest-item">UI/UX Design</div>
-                            <div class="interest-item">Emerging Tech</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills">
-                    <div class="skills-container">
-                        <div class="skill-category animate-item">
-                            <h4><i class="fas fa-code"></i> Technical Skills</h4>
-                            <ul class="skill-list">
-                                <li class="skill-item">React & React Native</li>
-                                <li class="skill-item">Node.js & Python</li>
-                                <li class="skill-item">SQL & NoSQL Databases</li>
-                                <li class="skill-item">DevOps & Cloud</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="skill-category animate-item">
-                            <h4><i class="fas fa-brain"></i> Personal Skills</h4>
-                            <ul class="skill-list">
-                                <li class="skill-item">Web Design</li>
-                                <li class="skill-item">Design Thinking</li>
-                                <li class="skill-item">Front End Coding</li>
-                                <li class="skill-item">Wireframe Creation</li>
-                                <li class="skill-item">Problem-Solving</li>
-                                <li class="skill-item">Back-end Coding</li>
-                                <li class="skill-item">Project Management</li>
-                                <li class="skill-item">Prompt Engineering</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section> -->
 
     <!-- Tech Stack Section -->
@@ -2090,24 +2243,6 @@
               </p>
             </div>
 
-            <!-- <div class="tech-item animate-item">
-              <div class="tech-icon"><i class="fab fa-canva"></i></div>
-              <h3 class="tech-name">Canva</h3>
-              <p class="tech-desc">
-                Graphic design platform for creating social media graphics,
-                presentations, and other visual content.
-              </p>
-            </div>
-
-            <div class="tech-item animate-item">
-              <div class="tech-icon"><i class="fab fa-adobe"></i></div>
-              <h3 class="tech-name">Photoshop</h3>
-              <p class="tech-desc">
-                Advanced image editing, graphic design, and digital art creation
-                using industry-standard tools.
-              </p>
-            </div> -->
-
             <div class="tech-item animate-item">
               <div class="tech-icon"><i class="fas fa-cloud"></i></div>
               <h3 class="tech-name">Cloud Services</h3>
@@ -2121,8 +2256,6 @@
       </div>
     </section>
 
-    <!-- Experience Section -->
-    <!-- Experience Section -->
     <!-- Experience Section -->
     <section id="experience" class="experience">
       <div class="container">
@@ -2391,22 +2524,6 @@
               </div>
             </div>
           </div>
-
-          <!-- <div class="timeline-item animate-item">
-            <div class="timeline-content">
-              <div class="timeline-date">2023 – 2024</div>
-              <h3 class="timeline-title">
-                Lead Ambassador at UNIVERSITY OF JOHANNESBURG
-              </h3>
-              <ul class="timeline-desc">
-                <li>Engage with industry partners and stakeholders</li>
-                <li>Organize and manage events and workshops</li>
-                <li>Mentor and guide students</li>
-                <li>Promote tech-driven initiatives</li>
-                <li>Support operational planning</li>
-              </ul>
-            </div>
-          </div> -->
         </div>
       </div>
     </section>
@@ -2459,7 +2576,7 @@
         </div>
 
         <div class="contact-container">
-          
+         
           <div class="contact-info">
             <h3>Let's Connect</h3>
             <ul class="contact-details">
@@ -2499,7 +2616,7 @@
             </div>
           </div>
 
-         
+        
           <div class="contact-form">
             <form>
               <input type="text" placeholder="Your Name" required />
@@ -2524,15 +2641,15 @@
               <ul class="contact-details">
                 <li>
                   <i class="fas fa-envelope"></i>
-                  <span>ndlovusabelo353@gmail.com</span>
+                  ndlovusabelo353@gmail.com
                 </li>
                 <li>
                   <i class="fas fa-phone"></i>
-                  <span>+27 73 331 3840</span>
+                  +27 73 331 3840
                 </li>
                 <li>
                   <i class="fas fa-map-marker-alt"></i>
-                  <span>Johannesburg, South Africa</span>
+                  Johannesburg, South Africa
                 </li>
               </ul>
 
@@ -2577,7 +2694,34 @@
     </footer>
 
     <script>
-      // Create particles for background
+      // Create particles for global background
+      function createGlobalParticles() {
+        const particlesContainer = document.getElementById("global-particles");
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("global-particle");
+
+          // Random properties
+          const size = Math.random() * 15 + 5;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          const delay = Math.random() * 20;
+          const duration = Math.random() * 15 + 20;
+
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${posX}%`;
+          particle.style.top = `${posY}%`;
+          particle.style.animationDelay = `${delay}s`;
+          particle.style.animationDuration = `${duration}s`;
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Create particles for hero background
       function createParticles() {
         const particlesContainer = document.getElementById("particles");
         const particleCount = 30;
@@ -2607,6 +2751,7 @@
       // Navigation toggle
       const hamburger = document.querySelector(".hamburger");
       const navMenu = document.querySelector(".nav-menu");
+      const header = document.querySelector("header");
 
       hamburger.addEventListener("click", () => {
         hamburger.classList.toggle("active");
@@ -2628,14 +2773,24 @@
         })
       );
 
-      // Header scroll effect
+      // Header scroll effect - hide on landing page, show when scrolling
+      let lastScrollY = window.scrollY;
+
       window.addEventListener("scroll", function () {
-        const header = document.querySelector("header");
-        if (window.scrollY > 50) {
+        // Show header when scrolling down
+        if (window.scrollY > 100) {
+          header.classList.add("visible");
           header.classList.add("scrolled");
         } else {
           header.classList.remove("scrolled");
+
+          // Only hide if at the very top of the page
+          if (window.scrollY < 10) {
+            header.classList.remove("visible");
+          }
         }
+
+        lastScrollY = window.scrollY;
       });
 
       // Animation on scroll
@@ -2674,8 +2829,21 @@
         });
       });
 
+      // Form submission handling
+      const forms = document.querySelectorAll("form");
+      forms.forEach((form) => {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert(
+            "Thank you for your message! In a real application, this would be connected to a backend service."
+          );
+          this.reset();
+        });
+      });
+
       // Initialize animations and effects
       document.addEventListener("DOMContentLoaded", function () {
+        createGlobalParticles();
         createParticles();
         checkScroll();
 
