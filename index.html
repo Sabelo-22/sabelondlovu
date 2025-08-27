@@ -12,6 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <style>
       :root {
         --primary: #0a84ff;
@@ -2684,10 +2686,25 @@
 
           <!-- Contact Form -->
           <div id="contact" class="footer-form">
-            <form>
-              <input type="text" placeholder="Your Name" required />
-              <input type="email" placeholder="Your Email" required />
-              <textarea placeholder="Message" required></textarea>
+            <form id="contact-form">
+              <input name="name" type="text" placeholder="Your Name" required />
+              <input
+                name="subject"
+                type="text"
+                placeholder="subject"
+                required
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Message"
+                required
+              ></textarea>
               <button type="submit">Send 🚀</button>
             </form>
           </div>
@@ -2834,16 +2851,16 @@
       });
 
       // Form submission handling
-      const forms = document.querySelectorAll("form");
-      forms.forEach((form) => {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert(
-            "Thank you for your message! In a real application, this would be connected to a backend service."
-          );
-          this.reset();
-        });
-      });
+      // const forms = document.querySelectorAll("form");
+      // forms.forEach((form) => {
+      //   form.addEventListener("submit", function (e) {
+      //     e.preventDefault();
+      //     // alert(
+      //     //   "Thank you for your message! In a real application, this would be connected to a backend service."
+      //     // );
+      //     this.reset();
+      //   });
+      // });
 
       // Initialize animations and effects
       document.addEventListener("DOMContentLoaded", function () {
@@ -2891,6 +2908,32 @@
         link.click(); // Simulate click to trigger download
         document.body.removeChild(link); // Clean up
       }
+    </script>
+    <script type="text/javascript">
+  (function () {
+    emailjs.init("Uo0A0uprHKDmk3url"); // Replace with your EmailJS Public Key
+  })();
+
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const form = this;
+
+      emailjs.sendForm("service_r4m5dxe", "template_nst54u2", form).then(
+        function () {
+          form.reset(); 
+          alert("✅ Message sent successfully!");
+          // <-- Reset form fields after success
+        },
+        function (error) {
+          alert("❌ Failed to send message. Error: " + JSON.stringify(error));
+        }
+      );
+    });
+</script>
+
     </script>
   </body>
 </html>
